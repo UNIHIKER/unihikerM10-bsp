@@ -1,7 +1,5 @@
 # RK3308BS UNIHIKER M10 Linux SDK
 
-[中文版](README_CN.md)
-
 A trimmed, customized **RK3308BS + Debian 12 (bookworm)** SDK based on the Rockchip Linux SDK, targeting the DFRobot UNIHIKER M10 board:
 
 - Boot chain: `MiniLoaderAll.bin` → U-Boot → Linux 6.1 → Debian rootfs
