@@ -12,14 +12,14 @@ A trimmed, customized **RK3308BS + Debian 12 (bookworm)** SDK based on the Rockc
 **Recommended (clone with all submodules in one step):**
 
 ```bash
-git clone --recursive https://github.com/fary99/unihikerM10-bsp.git
+git clone --recursive https://github.com/UNIHIKER/unihikerM10-bsp.git
 cd unihikerM10-bsp
 ```
 
 **If you cloned without `--recursive`, initialize submodules manually:**
 
 ```bash
-git clone https://github.com/fary99/unihikerM10-bsp.git
+git clone https://github.com/UNIHIKER/unihikerM10-bsp.git
 cd unihikerM10-bsp
 git submodule update --init --recursive
 ```
