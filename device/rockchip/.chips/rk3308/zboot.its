@@ -1,0 +1,56 @@
+/*
+ * FIT source for Rockchip zboot (kernel + fdt + resource), no Android format.
+ * Placeholders @KERNEL_IMG@, @KERNEL_DTB@, @RESOURCE_IMG@ are replaced by mk-fitimage.sh.
+ */
+/dts-v1/;
+/ {
+	description = "FIT image: kernel (LZ4) + FDT + resource";
+	#address-cells = <1>;
+
+	images {
+		kernel {
+			description = "Linux kernel";
+			data = /incbin/("@KERNEL_IMG@");
+			type = "kernel";
+			arch = "arm64";
+			os = "linux";
+			compression = "lz4";
+			load = <0x00280000>;
+			entry = <0x00280000>;
+			hash {
+				algo = "sha256";
+			};
+		};
+
+		fdt {
+			description = "FDT blob";
+			data = /incbin/("@KERNEL_DTB@");
+			type = "flat_dt";
+			arch = "arm64";
+			compression = "none";
+			/* hash omitted: avoid mismatch when FIT is built with -E external data */
+		};
+
+		resource {
+			description = "resource (logo, etc.)";
+			data = /incbin/("@RESOURCE_IMG@");
+			type = "multi";
+			arch = "arm64";
+			compression = "none";
+			/* hash omitted for same reason as fdt */
+		};
+	};
+
+	configurations {
+		default = "conf";
+		conf {
+			description = "Boot kernel with FDT and resource";
+			kernel = "kernel";
+			fdt = "fdt";
+			multi = "resource";
+			hash {
+				algo = "sha256";
+			};
+		};
+	};
+};

@@ -1,0 +1,1 @@
+../overlays/rootfs/input-event-daemon/usr/bin/power-key.sh

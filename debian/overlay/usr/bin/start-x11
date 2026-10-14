@@ -1,0 +1,31 @@
+#!/bin/sh
+# Start X11 on fbdev for Unihiker M10 (ILI9341 via fbtft -> /dev/fb0)
+# Use /tmp for logs (rootfs may have /var read-only)
+LOG=/tmp/x11.log
+XORGLOG=/tmp/Xorg.0.log
+XINITRC=/etc/X11/xinit/xinitrc.minimal
+
+# Wait for /dev/fb0 (fbtft may probe after udev)
+wait_fb0() {
+	for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; do
+		[ -e /dev/fb0 ] && return 0
+		sleep 1
+	done
+	return 1
+}
+
+echo "start-x11: waiting for /dev/fb0..." >> "$LOG"
+if ! wait_fb0; then
+	echo "start-x11: ERROR /dev/fb0 not found" >> "$LOG"
+	exit 1
+fi
+echo "start-x11: /dev/fb0 found, starting X (Xorg log: $XORGLOG)..." >> "$LOG"
+
+export DISPLAY=:0
+export HOME=/root
+export XAUTHORITY=/tmp/.Xauthority
+
+XORG=/usr/lib/xorg/Xorg
+[ -x "$XORG" ] || XORG=Xorg
+
+exec xinit "$XINITRC" -- "$XORG" :0 vt1 -keeptty -logfile "$XORGLOG" >> "$LOG" 2>&1

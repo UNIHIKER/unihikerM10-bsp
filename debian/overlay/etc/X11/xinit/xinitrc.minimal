@@ -1,0 +1,6 @@
+#!/bin/sh
+# Minimal X11 session for 320x240: visible background + small xterm + openbox
+command -v xsetroot >/dev/null && xsetroot -solid "#334455"
+# xterm: small font 6x10, 53x24 fits 320x240, visible colors
+xterm -fn 6x10 -geometry 53x24 -bg black -fg green &
+exec openbox

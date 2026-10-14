@@ -1,0 +1,15 @@
+RK_USE_FIT_IMG=y
+RK_BOOT_COMPRESSED=n
+RK_BOOT_RAW_IMAGE=y
+RK_WIFIBT_CHIP="RTL8723DS"
+RK_UBOOT_CFG_FRAGMENTS="rk3308-unihiker"
+RK_UBOOT_INI="RK3308MINIALL_UART0M0_EMMC_SD.ini"
+RK_KERNEL_PREFERRED="6.1"
+RK_KERNEL_CFG="unihikerM10_linux_defconfig"
+RK_KERNEL_DTS_NAME="rk3308bs-unihikerM10"
+# RK3308BS: boot+rootfs only, no oem/userdata (avoids dev-disk-by-partlabel mount timeout)
+RK_EXTRA_PARTITION_NUM=0
+RK_PARAMETER="parameter-64bit-debian.txt"
+RK_ROOTFS_SYSTEM="debian"
+RK_DEBIAN_MINIMAL=y
+RK_ROOTFS_INSTALL_MODULES=y

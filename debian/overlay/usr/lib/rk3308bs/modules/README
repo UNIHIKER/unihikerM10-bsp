@@ -1,0 +1,7 @@
+Place prebuilt RTL8723DS WiFi/BT kernel modules here:
+  - RTL8723DS.ko
+  - hci_uart.ko
+  - rtk_btusb.ko
+
+They will be copied to /lib/modules/ during rootfs build.
+If you have a previous build, copy from debian/binary/lib/modules/ or from external/rkwifibt build output.

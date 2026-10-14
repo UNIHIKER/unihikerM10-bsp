@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "I: create unihiker user"
+adduser --gecos unihiker --disabled-password unihiker
+
+echo "I: set unihiker user password"
+echo "unihiker:dfrobot" | chpasswd

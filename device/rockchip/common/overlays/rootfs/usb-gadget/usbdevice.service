@@ -1,0 +1,16 @@
+[Unit]
+Description=Manage USB device functions
+DefaultDependencies=no
+After=local-fs.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/usbdevice restart
+ExecStop=/usr/bin/usbdevice stop
+RemainAfterExit=yes
+
+Restart=on-failure
+RestartSec=1s
+
+[Install]
+WantedBy=sysinit.target

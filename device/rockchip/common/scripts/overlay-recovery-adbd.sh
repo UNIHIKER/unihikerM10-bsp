@@ -1,0 +1,1 @@
+../overlays/recovery/adbd/install.sh

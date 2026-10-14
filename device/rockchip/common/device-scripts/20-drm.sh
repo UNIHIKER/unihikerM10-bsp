@@ -1,0 +1,1 @@
+../overlays/rootfs/generate-logs/etc/generate_logs.d/20-drm.sh

@@ -1,0 +1,1 @@
+../scripts/post-rtk-hciattach.sh

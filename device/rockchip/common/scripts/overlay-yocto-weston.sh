@@ -1,0 +1,1 @@
+../overlays/yocto/weston/install.sh

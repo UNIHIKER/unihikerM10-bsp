@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Force system to boot into text console (no graphical login)
+# Runs inside chroot while building the Debian rootfs.
+
+set -e
+
+echo "I: disabling graphical login (lightdm) and setting default target to multi-user"
+
+# Disable lightdm if present (no graphical login manager)
+if command -v systemctl >/dev/null 2>&1; then
+    systemctl disable lightdm 2>/dev/null || true
+fi
+
+# Force default target to multi-user (text console)
+if [ -e /lib/systemd/system/multi-user.target ]; then
+    ln -sf /lib/systemd/system/multi-user.target /etc/systemd/system/default.target
+fi
+
+exit 0
+

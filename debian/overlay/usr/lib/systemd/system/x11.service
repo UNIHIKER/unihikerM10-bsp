@@ -1,0 +1,14 @@
+[Unit]
+Description=X11 display server (lightweight GUI on fbdev)
+After=systemd-udev-settle.service network.target
+Conflicts=getty@tty1.service
+
+[Service]
+Type=simple
+ExecStartPre=sleep 3
+ExecStart=/usr/bin/start-x11
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

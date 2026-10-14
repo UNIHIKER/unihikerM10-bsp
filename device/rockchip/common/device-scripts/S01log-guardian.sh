@@ -1,0 +1,1 @@
+../overlays/rootfs/log-guardian/S01log-guardian.sh

@@ -1,0 +1,11 @@
+# RK3308BS: DMA heap devices only (no GPU/VPU)
+ACTION=="remove", GOTO="permissions_end"
+
+KERNEL=="cma", MODE="0660", GROUP="video"
+KERNEL=="cma-uncached", MODE="0660", GROUP="video"
+KERNEL=="system", MODE="0660", GROUP="video"
+KERNEL=="system-dma32", MODE="0660", GROUP="video"
+KERNEL=="system-uncached", MODE="0660", GROUP="video"
+KERNEL=="system-uncached-dma32", MODE="0660", GROUP="video"
+
+LABEL="permissions_end"

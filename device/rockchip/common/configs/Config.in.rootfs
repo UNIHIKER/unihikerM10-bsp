@@ -1,0 +1,61 @@
+#
+
+comment "Rootfs system depends on linux kernel"
+	depends on !RK_KERNEL
+
+menuconfig RK_ROOTFS
+	bool "Rootfs (Buildroot|Debian|Yocto)"
+	depends on RK_KERNEL
+	default y if !RK_AMP
+
+if RK_ROOTFS
+
+source "Config.in.debian"
+
+config RK_ROOTFS_SYSTEM
+	string
+	default "debian" if RK_ROOTFS_SYSTEM_DEBIAN
+
+choice
+	prompt "default rootfs system"
+	help
+	  Default rootfs system.
+
+config RK_ROOTFS_SYSTEM_DEBIAN
+	bool "Debian"
+	depends on RK_DEBIAN
+
+endchoice # default rootfs
+
+config RK_ROOTFS_INITRD
+	bool "init ramfs/ramdisk"
+	# Based on kernel/init/do_mounts_rd.c identify_ramdisk_image()
+	depends on RK_ROOTFS_EXT2 || RK_ROOTFS_SQUASHFS || RK_ROOTFS_ROMFS || \
+		RK_ROOTFS_CPIO || RK_ROOTFS_CPIO_GZ
+
+config RK_ROOTFS_TYPE
+	string
+	default "ext2" if RK_ROOTFS_EXT2
+	default "ext4" if RK_ROOTFS_EXT4
+	default "squashfs" if RK_ROOTFS_SQUASHFS
+	default "btrfs" if RK_ROOTFS_BTRFS
+	default "f2fs" if RK_ROOTFS_F2FS
+	default "ubi" if RK_ROOTFS_UBI
+	default "erofs" if RK_ROOTFS_EROFS
+	default "romfs" if RK_ROOTFS_ROMFS
+	default "cpio" if RK_ROOTFS_CPIO
+	default "cpio.gz" if RK_ROOTFS_CPIO_GZ
+
+choice
+	prompt "filesystem type"
+	default RK_ROOTFS_EXT4
+
+config RK_ROOTFS_EXT4
+	bool "ext4"
+
+endchoice # fstype
+
+source "post/Config.in.rootfs"
+
+endif # Rootfs
+endmenuconfig # Rootfs

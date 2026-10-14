@@ -1,0 +1,14 @@
+[Unit]
+Description=USB RNDIS/ECM gadget (br0 10.1.2.3, DHCP)
+After=systemd-modules-load.service systemd-udev-settle.service
+Before=network-pre.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/bin/sleep 1
+ExecStart=/usr/lib/rk3308bs/usb-rndis-ether.sh
+TimeoutStartSec=60
+
+[Install]
+WantedBy=multi-user.target

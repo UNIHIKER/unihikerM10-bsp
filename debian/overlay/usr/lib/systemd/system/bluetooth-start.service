@@ -1,0 +1,14 @@
+[Unit]
+Description=RK3308BS RTL8723DS Bluetooth bring-up
+After=multi-user.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/usr/bin/bluetooth-start.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

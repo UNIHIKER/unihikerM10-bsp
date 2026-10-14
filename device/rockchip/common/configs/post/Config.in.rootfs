@@ -1,0 +1,34 @@
+#
+
+menu "Post rootfs installs"
+
+config RK_ROOTFS_LIGHTWEIGHT
+	bool "less features for space-saving"
+
+source "post/Config.in.overlay"
+
+config RK_ROOTFS_LD_CACHE
+	bool "create /etc/ld.so.cache"
+	default y if !RK_ROOTFS_LIGHTWEIGHT
+
+source "post/Config.in.hostname"
+source "post/Config.in.locale"
+
+config RK_ROOTFS_INSTALL_MODULES
+	bool "install kernel modules"
+	help
+	  Install '.ko' kernel modules.
+
+config RK_ROOTFS_STRIP_MODULES
+	bool "strip kernel modules"
+	default y
+	help
+	  Strip any '.ko' kernel modules.
+
+config RK_ROOTFS_DEBUG_INFO
+	bool "debug information dir (/info/)"
+	default y if !RK_ROOTFS_LIGHTWEIGHT
+
+source "post/Config.in.wifi-bt"
+
+endmenu # Post-rootfs

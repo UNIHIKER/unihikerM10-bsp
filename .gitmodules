@@ -1,0 +1,11 @@
+[submodule "u-boot"]
+	path = u-boot
+	url = https://github.com/UNIHIKER/u-boot.git
+	branch = unihikerM10
+[submodule "kernel"]
+	path = kernel
+	url = https://github.com/UNIHIKER/kernel.git
+	branch = unhikerM10-6.1.118
+[submodule "rkbin"]
+	path = rkbin
+	url = https://github.com/UNIHIKER/rkbin.git

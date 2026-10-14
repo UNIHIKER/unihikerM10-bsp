@@ -1,0 +1,1 @@
+../scripts/post-rtl8723ds-modules.sh
